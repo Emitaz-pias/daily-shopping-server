@@ -43,7 +43,8 @@ client.connect((err) => {
   app.post("/addProduct", (req, res) => {
     const product = req.body;
     products.insertOne(product).then((result) => {
-      res.send(result.insertedCount > 0);
+      console.log("inserted is ", result);
+      res.send(result.acknowledged);
     });
   });
 
