@@ -43,15 +43,11 @@ client.connect((err) => {
   app.post("/addProduct", (req, res) => {
     const product = req.body;
     products.insertOne(product).then((result) => {
-      if (result.insertedCount > 0) {
-        console.log("i'm inserted this one", result);
-        res.send(true);
-      }
+      res.send(result.insertedCount > 0);
     });
   });
 
   // post order to server
-
   app.post("/placeOrder", (req, res) => {
     console.log("the order is", req.body);
     const order = req.body;
@@ -106,7 +102,7 @@ client.connect((err) => {
   app.delete("/product/:id", (req, res) => {
     const id = req.params.id;
     products.deleteOne({ _id: ObjectId(id) }).then((result) => {
-      res.send(result.deletedCount>0);
+      res.send(result.deletedCount > 0);
     });
   });
 });
@@ -117,5 +113,3 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT || port, () => {
   console.log("app is alive");
 });
-
-
