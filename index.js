@@ -2,8 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { MongoClient } = require("mongodb");
-ObjectID = require("mongodb").ObjectID;
+const { MongoClient, ObjectId } = require("mongodb");
 const admin = require("firebase-admin");
 
 const app = express();
@@ -106,8 +105,8 @@ client.connect((err) => {
 
   app.delete("/product/:id", (req, res) => {
     const id = req.params.id;
-    products.removeOne({ _id: ObjectID(id) }).then((result) => {
-      res.send(result.deletedCount > 0);
+    products.deleteOne({ _id: ObjectId(id) }).then((result) => {
+      res.send(result.deletedCount>0);
     });
   });
 });
@@ -118,3 +117,5 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT || port, () => {
   console.log("app is alive");
 });
+
+
