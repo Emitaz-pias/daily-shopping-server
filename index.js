@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 // connect firebase sdk
 const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: `https://${process.env.DB}.firebaseio.com`,
@@ -37,7 +36,7 @@ client.connect((err) => {
     .db(`${process.env.DB}`)
     .collection(`${process.env.ORDERS_COLLECTION}`);
 
-  // all the post apis
+  // all the post api's
 
   // post a product
   app.post("/addProduct", (req, res) => {
