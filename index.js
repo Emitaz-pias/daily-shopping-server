@@ -66,7 +66,7 @@ client.connect((err) => {
       .then((product) => res.send(product));
   });
 
-  // get orders of a certain user
+  // get orders of a certain owner
   app.get("/orders", (req, res) => {
     const bearer = req.headers.authorization;
     if (bearer && bearer.startsWith("Bearer ")) {
