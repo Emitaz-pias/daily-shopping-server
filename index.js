@@ -86,7 +86,9 @@ client.connect((err) => {
             res.send("404 Not Found acces denied");
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log(error);
+        });
     }
   });
 
